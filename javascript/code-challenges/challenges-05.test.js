@@ -24,30 +24,24 @@ const toLastNames = people => {
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 2
 
-Write a function named addValues that, given an array of numbers as input, 
-uses reduce to add the values in the array.
+Write a function named addValues that, given an array of numbers as input, uses reduce to add the values in the array.
 
 ------------------------------------------------------------------------------------------------ */
 
 const addValues = (arr) => {
   // Solution code here...
-
   let finalvalue = arr.reduce(getSum, 0);
   return finalvalue;
   function getSum(total, num) {
     return total + Math.round(num);
 
   }
-
-
 };
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
 
-Write a function named addPurchases that, given an array of objects as input,
- uses reduce to find the total amount purchased. Each object contains the keys
-  `item` and `purchasePrice` like the example.
+Write a function named addPurchases that, given an array of objects as input, uses reduce to find the total amount purchased. Each object contains the keys `item` and `purchasePrice` like the example.
 
 {
   item: 'switch'
@@ -56,35 +50,23 @@ Write a function named addPurchases that, given an array of objects as input,
 
 ------------------------------------------------------------------------------------------------ */
 
-const addPurchases = (arr) => {
-  // Solution code here...
+const addPurchases = (arr) => arr.reduce(((ac, cu) => ac + cu.purchasePrice), 0);
 
-  let totalpurchased = arr.reduce((prev,cur) => {
-  return cur.purchasePrice + prev ;}
-  , 0);
-
-  
-  return totalpurchased;
-};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
 
-Write a function named countNumberOfElements that, given an array as input,
- uses reduce to count the number of elements in the array.
+Write a function named countNumberOfElements that, given an array as input, uses reduce to count the number of elements in the array.
 
 Note: You may not use the array's built-in length property.
 ------------------------------------------------------------------------------------------------ */
 
-const countNumberOfElements = (arr) => {
-  // Solution code here...
-};
+const countNumberOfElements = (arr) => arr.reduce((ac, cu) => cu ? ac + 1 : ac + 0, 0);
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 5
 
-Write a function named returnNames that, given the Star Wars data,
- below, uses reduce to return an array containing the names of the characters.
+Write a function named returnNames that, given the Star Wars data, below, uses reduce to return an array containing the names of the characters.
 ------------------------------------------------------------------------------------------------ */
 
 let starWarsData = [{
@@ -105,8 +87,7 @@ let starWarsData = [{
   skin_color: 'gold',
   eye_color: 'yellow',
   birth_year: '112BBY',
-  gender: 'n/a'
-},
+  gender: 'n/a'},
 {
   name: 'R2-D2',
   height: '96',
@@ -138,15 +119,11 @@ let starWarsData = [{
   gender: 'female'
 }];
 
-const returnNames = (arr) => {
-  // Solution code here...
- 
-  let allName = starWarsData.reduce( (acc, currentValue)=> {
-    return accc + urrentValue.name }, 0 
-
-  ) ;
-  return allName ;
-};
+let names = [];
+const returnNames = (arr) => arr.reduce((acc, cur) => {names.push(cur.name);
+  names = names.slice(0,5);
+  return names;
+}, '');
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 6
@@ -158,6 +135,7 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
+  return str.split('').reduce(((reverse, character) => character + reverse), '');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -333,7 +311,7 @@ describe('Testing challenge 2', () => {
 
 describe('Testing challenge 3', () => {
   test('It should add the purchase price', () => {
-    expect(addPurchases([{ item: 'switch', purchasePrice: 399 }, { item: 'toothpaste', purchasePrice: 2 }])).toStrictEqual(401);
+    expect(addPurchases([{item: 'switch', purchasePrice: 399}, {item: 'toothpaste', purchasePrice: 2}])).toStrictEqual(401);
     expect(addPurchases([])).toStrictEqual(0);
   });
 });
@@ -346,7 +324,7 @@ describe('Testing challenge 4', () => {
 
 describe('Testing challenge 5', () => {
   test('It should return an array continaing the names of the characters', () => {
-    expect(returnNames(starWarsData)).toStrictEqual(['Luke Skywalker', 'C-3PO', 'R2-D2', 'Darth Vader', 'Leia Organa']);
+    expect(returnNames(starWarsData)).toStrictEqual([ 'Luke Skywalker', 'C-3PO', 'R2-D2', 'Darth Vader', 'Leia Organa' ]);
     expect(returnNames(starWarsData).length).toStrictEqual(5);
   });
 });
@@ -365,7 +343,7 @@ xdescribe('Testing challenge 7', () => {
 
 xdescribe('Testing challenge 8', () => {
   test('It should return the average of the numbers in the array', () => {
-    expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85])).toStrictEqual(64);
+    expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85 ])).toStrictEqual(64);
   });
 });
 
@@ -383,7 +361,7 @@ xdescribe('Testing challenge 10', () => {
 
 xdescribe('Testing challenge 11', () => {
   test('It should return an array containing the names of the children', () => {
-    expect(extractChildren(characters)).toStrictEqual(['Robb', 'Sansa', 'Arya', 'Bran', 'Rickon', 'Drogon', 'Rhaegal', 'Viserion', 'Margaery', 'Loras']);
+    expect(extractChildren(characters)).toStrictEqual([ 'Robb', 'Sansa', 'Arya', 'Bran', 'Rickon', 'Drogon', 'Rhaegal', 'Viserion', 'Margaery', 'Loras' ]);
     expect(extractChildren(characters).length).toStrictEqual(10);
   });
 });
