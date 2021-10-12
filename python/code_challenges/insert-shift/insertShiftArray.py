@@ -1,10 +1,13 @@
-def insert_ShiftArray(arr , x):
-    num = len(arr)//2
-    arr.insert(num , x)
-    return arr 
+def array_sheft(arr,n):
+    for i in range(len(arr)) :
+        if n>arr[i-1] and n<arr[i] :
+            arr.insert(i,n)
+    return arr
+    print(arr)
+print(array_sheft([3,4,6,8],5))
     
    
 
 
 
-print(insert_ShiftArray([1,2,3,5,6,7,0,7] , 9))
+
