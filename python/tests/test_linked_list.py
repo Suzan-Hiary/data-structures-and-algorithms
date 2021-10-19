@@ -3,6 +3,8 @@
 from code_challenges.reverse_linked_list import LinkedList, Node
 
 
+
+
 def test_node_has_int_data():
     # Arrange any data that you need to run your test
     expected = 1
@@ -138,3 +140,87 @@ def test_insertBefore():
     expected= "{ 3 } -> { 2 } -> { 3 } -> { 1 } -> NULL"
     actul=str(ll)
     assert expected==actul
+
+def test_insert_after():
+    #input
+    ll=LinkedList()
+    ll.insert(1)
+    ll.insert(2)
+    ll.insert_after(1,22)
+    #output
+    expected='{ 2 } -> { 1 } -> { 22 } -> NULL'
+    actul= str(ll)
+    assert expected==actul
+
+def test_zipLists():
+  #input
+  ll = LinkedList()
+  ll.insert(2)
+  ll.insert(3)
+  ll.insert(1)
+  ll2 = LinkedList()
+  ll2.insert(4)
+  ll2.insert(9)
+  ll2.insert(5)
+  #output
+  expected='{ 1 } -> { 5 } -> { 3 } -> { 9 } -> { 2 } -> { 4 } -> NULL'
+  actul= str(LinkedList.zipLists(ll, ll2))
+  assert expected==actul
+
+##### lab 7 tests
+def test_kth_from_end():
+    #input
+    ll = LinkedList()
+    ll.insert(2)
+    ll.insert(8)
+    ll.insert(3)
+    ll.insert(1) 
+    #output
+    actul=ll.kth_from_end(0)
+    expected=2
+    assert actul==expected
+def test_kth_from_end2():
+    #input
+    ll = LinkedList()
+    ll.insert(2)
+    ll.insert(8)
+    ll.insert(3)
+    ll.insert(1) 
+    #output
+    actul=ll.kth_from_end(2)
+    expected=3
+    assert actul==expected
+
+def test_kth_from_end3():
+    #input
+    ll = LinkedList()
+    ll.insert(2)
+    ll.insert(8)
+    ll.insert(3)
+    ll.insert(1) 
+    #output
+    actul=ll.kth_from_end(-1)
+    expected=1
+    assert actul==expected
+    
+def test_kth_from_end4():
+    #input
+    ll = LinkedList()
+    ll.insert(2)
+    #output
+    actul=ll.kth_from_end(0)
+    expected=2
+    assert actul==expected
+
+def test_kth_from_end5():
+    #input
+    ll = LinkedList()
+    ll.insert(2)
+    ll.insert(8)
+    ll.insert(3)
+    ll.insert(1) 
+    ll.insert(0) 
+    #output
+    actul=ll.kth_from_end(2)
+    expected=3
+    assert actul==expected
