@@ -10,3 +10,4 @@ Open brackets must be closed by the same type of brackets. Open brackets must be
 make function called multiBracketValidation(string) the function should check if the bracket is balanced or not
 ## White Board :
 
+![](multi.jpg)
