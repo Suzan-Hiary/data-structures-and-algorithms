@@ -127,7 +127,58 @@ Returns: a string representing all the values in the Linked List,
         new_node = Node(new_value)
         new_node.next = current.next
         current.next = new_node
+  
+  @classmethod   
+  # Function to reverse the linked list
+  def reverse(self,list):
+        '''
+        this method will reverse the order of the nodes inside the list 
+         '''
+        prev = None
+        current = list.head
+        while(current is not None):
+            next = current.next
+            current.next = prev
+            prev = current
+            current = next
+        list.head = prev
+        return list
+  
+  def length(self):
+        '''
+        this function returns the length of 
+        the linked list 
+        '''
+        current = self.head 
+        count = 0 
+        while (current):
+            count += 1
+            current = current.next
+        return count
 
+  def kth_from_end(self,k):
+        '''
+         revrse the linked list 
+         creat a counter if the counter value =k then return 
+         node.data at that number
+        '''
+        if k > self.length():
+           return 'the number you entered is longer than the list'
+        if k < 0:
+            k=abs(k)-1
+            list=self
+        else:    
+            list=LinkedList.reverse(self)
+        current=list.head
+        count=0
+        while current:
+            if k==count:
+                data=current.data
+                break
+            count+=1
+            current=current.next
+        print(str(self))
+        return data
 ll=LinkedList()
 ll.insert(1)
 ll.insert(2) 
@@ -141,3 +192,4 @@ print(ll)
 # ll.insert_after(1,4)
 # print(ll)
 # print(str(ll)) 
+print(ll.kth_from_end(3))
