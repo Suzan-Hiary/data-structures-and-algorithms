@@ -1,36 +1,61 @@
-from code_challenges.stack_queue_animal_shelter.fifo_animal_shelter import FifoAnimalShelter
+from code_challenges.stack_queue_animal_shelter.fifo_animal_shelter import AnimalShelter
 
 
-def test_enqueue():
-  shelter = FifoAnimalShelter()
-  shelter.enqueue('Dog')
-  shelter.enqueue('Cat')
-  shelter.enqueue('Dog')
-  shelter.enqueue('Dog')
-  shelter.enqueue('Cat')
 
-  assert shelter.front.value == "Dog"
-  assert shelter.rear.value == "Cat"
-  assert shelter.length == 5
 
-def test_dequeue_no_pref():
-  shelter = FifoAnimalShelter()
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Cat')
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Cat')
+def test_add_animal():
+    #input
+    animal=AnimalShelter()
+    animal.enqueue('cat')
 
-  assert shelter.dequeue_dog_or_cat() == "Dog"
+    #ouytput
+    expected='cat'
+    actul=animal.front.data
+    assert expected==actul
 
-def test_dequeue_with_pref():
-  shelter = FifoAnimalShelter()
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Cat')
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Dog')
-  shelter.enqueue_dog_or_cat('Cat')
+def test_add_animals():
+    #input
+    animal=AnimalShelter()
+    animal.enqueue('cat')
+    animal.enqueue('dog')
+    animal.enqueue('dog')
 
-  shelter.dequeue_dog_or_cat('Cat')
-  assert shelter.front.next.value == "Dog"
-  assert shelter.length == 4
+    #ouytput
+    expected='cat'
+    actul=animal.front.data
+    assert expected==actul
+
+
+def test_remove_animals():
+    #input
+    animal=AnimalShelter()
+    animal.enqueue('cat')
+    animal.enqueue('dog')
+   
+
+    #ouytput
+    expected='cat'
+    actul= animal.dequeue('cat')
+    assert expected==actul
+
+def test_remove_animals2():
+    #input
+    animal=AnimalShelter()
+    animal.enqueue('cat')
+    animal.enqueue('dog')
+    #ouytput
+    expected='dog'
+    actul= animal.dequeue('dog')
+    assert expected==actul
+
+
+def test_remove_animals4():
+    #input
+    animal=AnimalShelter()
+    animal.enqueue('cat')
+    animal.enqueue('dog')
+    animal.enqueue('dog')
+    #ouytput
+    expected=None
+    actul= animal.dequeue('horse')
+    assert expected==actul
