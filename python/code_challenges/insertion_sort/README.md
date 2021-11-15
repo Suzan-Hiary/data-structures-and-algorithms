@@ -21,4 +21,4 @@ Implement insertion sort on a given array.
 - space <- O(n)
 
 ## White-Board
-![](Screenshot.png)
+![](assert/Screenshot.png)
