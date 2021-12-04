@@ -1,156 +1,143 @@
-
-
-
 class Node :
-    """ method to create a new Node"""
-
-    def __init__(self , data , next = None):
+    def __init__(self , data ) :
         self.data = data
-        self.next = next 
-
-
-class LinkedList:
-
-    def __init__(self):
-        self.head =None
-
-
-    def insert(self , value):
-        self.head = Node(value,self.head)
-        return self.head
-    
-    def append(self , value):
-        currentnode = self.head
-        while currentnode != None:
-            if currentnode.next is None :
-                  currentnode.next = Node(value)
-                  break
-            currentnode = currentnode.next
-    
-    def __str__(self):
+        self.left = None
+        self.right=None
         
-        string = ""
-        currentnode=self.head
 
-        while currentnode != None:
-            value = currentnode.data
-            if currentnode.next is None:
-                string += "{" + f'{value}' + '}' + "-> Null"
-                break
-                
+
+class BinaryTree :
+    def _init__(self ):
+        self.root = None
+        
+
+
+    def pre_order(self ):
+        """ a method to traverse the Binary tree in a pre_order order 
+        Args : root 
+        return : root -->left subtree  --> right subtree"""
+        result =[]
+        node =  self.root
+        result.append(node.data)
+        if node.left :
+
+            self.pre_order(node.left , result)
+            
+        
+        if node.right :
+
+            self.pre_order(node.right, result)
+
+        return result
+
+
+    def post_order(self  ):
+        result=[]
+        node = self.root
+
+        if node.left :
+            self.post_order(node.left , result)
+        
+        
+        if node.right:
+            self.post_order(node.right , result)
+
+        result.append(node.data)
+        return result 
+
+    def in_order(self  ):
+        result=[]
+        node = self.root
+
+        if node.left :
+            self.in_order(node.left , result)
+        
+        result.append(node.data)
+
+        if node.right:
+            self.in_order(node.right , result)
+
+        
+        return result
+
+class Binary_Search_Tree :
+
+    def __init__(self , data=None):
+        super().__init__(data)
+
+    
+    def add(self , value):
+        node = Node(value)
+
+        if not self.root :
+            self.root = node
+
+            return 
+
+        current = self.root 
+
+        while True :
+            if node.data < current.data:
+                if current.left :
+                   current = current.left
+
+                else : 
+                    current.left = node 
+                    return 
+
+            else: 
+                if current.right :
+                    current = current.right   
+                else :
+                    current.right = node 
+                    return
+
+
+
+
+    
+    def contains (self , value ):
+
+       
+
+        if not self.root :
+            return False
+
+        current = self.root
+
+        while True :
+
+            if  value == current.data:
+
+                return True
+
+            if value < current.data :
+                if current.left :
+                    current = current.left
+
+                else :
+                     return False
             else:
-                string += "{" + f'{value}' + '}' + "-> "
-                currentnode = currentnode.next
-        return string       
-        
-                   
-    def multi_append(self , list):
-        """method takes an array as a args and append the list to the end of the list"""
+                if current.right :
+                    current= current.right
 
-        for i in list:
-            self.append(i)
-        return
-    
-    def insertbefore(self , target , value):
-        """ method takes the value and the target value and return the value inserted before the target value"""
-
-        newnode = Node(value)
-        current = self.head
-        
-        if current != None:
-            while current:
-                
-                if current.next.data == target:
-                    newnode.next = current.next
-                    current.next = newnode
-                    break
-                else:
-                    current = current.next
-                    
-
-    def insertafter(self,target ,value):
-
-        newnode = Node(value)
-        currentnode=self.head
-
-        if currentnode != None:
-            while currentnode:
-                if currentnode.data == target :
-                    newnode.next = currentnode.next
-                    currentnode.next = newnode
-                    break
-                else:
-                    currentnode = currentnode.next
-    
-    def reverse(self , list):
-        """ method to reverse the linked list"""
-
-        prev = None
-        current = list.head
-        while(current is not None):
-            next = current.next
-            current.next = prev
-            prev = current
-            current = next
-        list.head = prev
-        return list
-
-    def length(self):
-        """ method to calculate the linked list length"""
-        current = self.head
-        count=0
-
-        while current :
-            count+=1
-            current=current.next
-        return count    
-
-
-    def KTH_from_end(self , k):
-        """ a method takes a number as a parameter and return the value which k is places from the tail"""
-
-         # if k was greater than the linkedlist length
-
-        if k > self.length():
-            return ' The number is greater than the list length'
-        if k < 0 :
-            k = abs(k)-1
-            list = self
-        else :
-            #reverse the array
-            list = LinkedList.reverse(self)
-        
-        counter = 0
-        current = self.head
-
-        while current :
-            if k == current :
-                data = current.data
-                break
-
-        
-            counter+=1
-            current= current.next
-        print(str(self))
-        return data
-
-
-
-     
+                else :
+                    return False
 
 
 
 
-ll=LinkedList()
-ll.insert(1)
-ll.insert(2) 
-ll.insert(3) 
 
-ll.insert(5)
-ll.append(4)
-# print(ll.insertbefore(1,99))
-# print(ll.insertafter(1,99))
-# # ll.multi_append([4,5,6,7])
-# ll.KTH_from_end(3)
-print(ll.KTH_from_end(3))
-print(ll)
+
+
+
+
+tree = Binary_Search_Tree()
+tree.add(66)
+tree.add(60)
+tree.add(55)
+tree.add(50)
+tree.add(40)
+print(tree)
+
+

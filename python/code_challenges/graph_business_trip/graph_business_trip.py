@@ -139,5 +139,22 @@ class Graph:
             return False,'$0'     
         return True,'$'+ str(cost)
 
+    """ lab 38"""
 
+    def graph_depth_first(self,node):
+        visited_node = set()
+        visited_node.add(node)
+        depth_first_list = []
+        def walk(node,visited_node,depth_first_list):
+            visited_node.add(node)
+            depth_first_list.append(node.value)
+            neighbors = self.neighbors(node)
+            if neighbors != 'empty':
+                for i in neighbors:
+                    if i.vertix not in visited_node :
+                        walk(i.vertix,visited_node,depth_first_list)
+        walk(node,visited_node,depth_first_list)
+        return depth_first_list 
 
+    def print_graph(self):
+        print(self._adjacency_list)
